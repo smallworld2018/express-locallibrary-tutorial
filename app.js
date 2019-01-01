@@ -10,11 +10,16 @@ var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" 
 var catalogRouter = require('./routes/catalog'); //Import routes for "catalog" area of site
 var compression = require('compression');
 
+var compression = require('compression');
+var helmet = require('helmet');
+
 var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://admin:b6916B6916@ds043158.mlab.com:43158/local_library';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://admin:b6916B6916@ds043158.mlab.com:43158/local_library';
+
+
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
